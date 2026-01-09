@@ -1,5 +1,3 @@
-// jika marker dihapus remove listener pada marker label
-
 import { showAlert } from "./alertModal.js";
 import {
   AddMarkerCommand,
