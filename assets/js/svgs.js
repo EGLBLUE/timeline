@@ -1,0 +1,6 @@
+export const btnRemoveSvg = `
+<svg width="10" height="10" stroke="currentColor" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+ <path d="m21.958 2.1647-19.933 19.732" fill="none" stroke-width="3.3672"/>
+ <path d="m21.857 21.997-19.732-19.933" fill="none" stroke-width="3.3672"/>
+</svg>
+`;

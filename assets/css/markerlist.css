@@ -1,0 +1,84 @@
+
+/* Marker Section */
+.marker-section {
+  display: flex;
+  flex-direction: column;
+  min-height: 0
+}
+
+.marker-controls {
+  margin-top: 0.6em;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  flex-shrink: 0
+}
+.marker-controls section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  margin-top: 0.6em;
+}
+
+.marker-input {
+  flex: 1;
+  padding: 5px 10px;
+  border: 1px solid var(--border-default);
+  border-radius: 3px;
+  background: var(--bg-input);
+  outline: none;
+}
+
+.marker-list {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  user-select: none;
+  font-size: 0.7rem;
+  padding-right: 0.3em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: .5em 0;
+}
+
+.marker-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--gray-650);
+  border-radius: 3px;
+  transition: all 0.3s;
+  padding: 0.5em;
+  gap: 1em;
+}
+
+.marker-label {
+  text-overflow: ellipsis;
+  flex: 3;
+  min-width: 10px;
+  white-space: nowrap;
+  text-wrap: nowrap;
+  border: 0;
+  padding: .2em;
+  border-radius: 0;
+}
+
+.marker-times {
+  flex: 1.5;
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  gap: 0.3em;
+}
+.marker-time {
+  background: var(--border-default);
+  padding: 0.3em;
+  cursor: pointer;
+}
+
+.marker-time:hover {
+  color: var(--text-accent);
+}

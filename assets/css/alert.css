@@ -1,0 +1,105 @@
+.alert-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.alert-overlay.quick {
+  background: none;
+  position: absolute;
+  top: 95%;
+  bottom: 10%;
+  user-select: none;
+}
+.alert-box {
+  position: relative;
+  background: var(--gray-700);
+  padding: 1em;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  min-width: 320px;
+  font-size: .9rem;
+  animation: pop 0.2s ease;
+}
+
+.alert-box h3 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+}
+
+.alert-overlay.warning .alert-box h3 {
+  color: var(--warning-color);
+}
+.alert-overlay.error .alert-box h3 {
+  color: var(--danger-color);
+}
+
+.alert-box p {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.alert-btns {
+  width: 100%;
+  display: none;
+  justify-content: space-between;
+  justify-self: end;
+  align-items: center;
+  margin-top: 3em;
+}
+
+.alert-btns button {
+  padding: 0 1.5em;
+}
+.alert-btns .alert-no-btn{
+  background: var(--btn-danger-bg);
+}
+.alert-btns .alert-cancel-btn{
+  display: none;
+}
+
+.alert-btns .alert-cancel-btn.active{
+  display: block;
+}
+.alert-btns .alert-no-btn:hover, .alert-no-btn:focus{
+  background-color: var(--btn-danger-hover);
+  color: rgb(70, 21, 21);
+}
+.alert-box .alert-btns.active {
+  display: flex;
+}
+.alert-overlay.top {
+  align-items: flex-start;
+  padding-top: 2em;
+}
+.alert-overlay.bottom {
+  align-items: flex-end;
+  padding-bottom: 2em;
+}
+.alert-overlay.left {
+  justify-content: flex-start;
+  padding-left: 2em;
+}
+.alert-overlay.right {
+  justify-content: flex-end;
+  padding-right: 2em;
+}
+.alert-overlay.center {
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

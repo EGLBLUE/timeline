@@ -1,0 +1,136 @@
+.timeline-container {
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  background: var(--gray-750);
+  padding-left: 1em;
+  padding-right: 70px;
+  padding-bottom: 25px;
+  user-select: none;
+}
+.timeline-container.no-scroll {
+  overflow-x: hidden !important;
+  border-bottom: 10px solid transparent;
+}
+.timeline {
+  position: relative;
+  height: 70px;
+  background: var(--timeline-bg);
+  cursor: pointer;
+  min-width: 100%;
+}
+
+.timeline-handle {
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  z-index: 10;
+  left: 0;
+}
+
+.handle-line {
+  width: 1px;
+  height: 100%;
+  background: var(--timeline-handle);
+}
+
+.handle-head {
+  position: absolute;
+  bottom: -17px;
+  left: -4.6px;
+  width: 15px;
+  height: 15px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 20px solid #6366f1;
+}
+
+.tick {
+  position: absolute;
+  width: 1px;
+  background: var(--timeline-tick);
+}
+
+.tick.minor {
+  height: 6px;
+}
+.tick.major {
+  height: 10px;
+}
+.tick.label {
+  height: 15px;
+}
+
+.tick.label span {
+  position: absolute;
+  top: -17px;
+  font-size: 11px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.timeline-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.zoom-controls {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7em;
+}
+
+.zoom-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.zoom-btn {
+  width: 15px;
+  height: 15px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-default);
+  background: var(--bg-input);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.zoom-slider{
+  cursor: pointer;
+}
+.zoom-btn:hover{
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.zoom-label {
+  position: absolute;
+  top: -10px;
+  user-select: none;
+}
+
+/* Time Display */
+.time-display {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  font-family: "Courier New", monospace;
+}
+
+.time-label {
+  color: #8bc7ff;
+}
+
+.time-value {
+  color: #c7eeff;
+}
+

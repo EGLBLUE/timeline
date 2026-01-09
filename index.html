@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timeline - Eagle Blue</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/timeline.css" />
+    <link rel="stylesheet" href="./assets/css/loading.css" />
+    <link rel="stylesheet" href="./assets/css/alert.css" />
+    <link rel="stylesheet" href="./assets/css/markerlist.css" />
+    <link rel="stylesheet" href="./assets/css/buttons.css" />
+    <link
+      rel="shortcut icon"
+      href="/assets/images/favicon.ico"
+      type="image/x-icon"
+    />
+  </head>
+
+  <body>
+    <div id="alertModal" class="alert-overlay">
+      <div class="alert-box">
+        <h3 id="alert-title"></h3>
+        <p id="alert-message"></p>
+        <div class="alert-btns">
+          <button id="alertCancel" class="alert-cancel-btn btn-primary">
+            Cancel
+          </button>
+          <button id="alertNo" class="alert-no-btn btn btn-remove">NO</button>
+          <button id="alertOk" class="alert-ok-btn btn btn-primary">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <header>
+      <div class="status">
+        <h1 class="title">Eagle Blue - Timeline</h1>
+        <span id="unsavedChanges" class="unsaved-changes"></span>
+      </div>
+      <div class="panel-menu">
+        <ul class="panel-menu-list tools">
+          <li title="Undo change (CTRL+z)">
+            <button id="undoBtn" class="panel-btn undo-btn">
+              <svg
+                width="15"
+                height="15"
+                stroke="currentColor"
+                version="1.1"
+                viewBox="0 0 36 36"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g fill="none" stroke-width="3.8">
+                  <path d="m3.3599 12.886 13.671 13.811" />
+                  <path d="m3.3645 15.57 13.811-13.671" />
+                  <path d="m4.6643 13.944s46.359-7.5782 20.051 20.304" />
+                </g>
+              </svg>
+            </button>
+          </li>
+          <li title="Redo change (CTRL+SHIFT+z)">
+            <button id="redoBtn" class="panel-btn redo-btn">
+              <svg
+                width="15"
+                height="15"
+                stroke="currentColor"
+                version="1.1"
+                viewBox="0 0 36 36"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g fill="none" stroke-width="3.8">
+                  <path d="m33.359 12.886-13.671 13.811" />
+                  <path d="m33.354 15.57-13.811-13.671" />
+                  <path d="m32.054 13.944s-46.359-7.5782-20.051 20.304" />
+                </g>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <button
+              id="clearMarkersBtn"
+              class="panel-btn clear-markers-btn"
+              aria-label="remove all marker"
+              title="Remove All Marker (CTRL+SHIFT+c)"
+            >
+              Clear Markers
+            </button>
+          </li>
+        </ul>
+        <ul class="panel-menu-list">
+          <li>
+            <button
+              id="importBtn"
+              class="panel-btn import-timeline-btn"
+              title="Import Timeline Data (CTRL+i)"
+            >
+              <svg
+                width="15"
+                height="15"
+                stroke="currentColor"
+                version="1.1"
+                viewBox="0 0 36 36"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g fill="none" stroke-width="3.8">
+                  <path d="m19.392 2.2925-13.811 13.671" />
+                  <path d="m16.708 2.2971 13.671 13.811" />
+                  <path d="m18 4.477v25.484" />
+                  <path d="m32.82 25.484v7.9848h-29.64v-7.9848" />
+                </g>
+              </svg>
+
+              Import
+            </button>
+          </li>
+          <li>
+            <button
+              id="exportBtn"
+              class="panel-btn export-timeline-btn"
+              title="Export Timeline Data (CTRL+s)"
+            >
+              <svg
+                width="15"
+                height="15"
+                stroke="currentColor"
+                version="1.1"
+                viewBox="0 0 36 36"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g fill="none" stroke-width="3.8">
+                  <path d="m19.392 28.604-13.811-13.671" />
+                  <path d="m16.708 28.6 13.671-13.811" />
+                  <path d="m18 26.42v-25.484" />
+                  <path d="m32.82 25.484v7.9848h-29.64v-7.9848" />
+                </g>
+              </svg>
+              Export
+            </button>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="top-container">
+      <div class="title-container">
+        <h3 id="videoTitle" class="video-title"></h3>
+      </div>
+      <!-- Video URL Input -->
+      <div class="video-input-section">
+        <input
+          type="text"
+          id="videoUrlInput"
+          placeholder="Masukkan Link YouTube Video"
+          class="video-input"
+        />
+        <button
+          id="loadNewVideoBtn"
+          class="load-btn btn btn-primary"
+          title="Load url video"
+        >
+          Load
+        </button>
+      </div>
+    </div>
+
+    <main>
+      <!-- Loading Overlay -->
+      <div id="loading-overlay" class="loading">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading...</div>
+      </div>
+
+      <div class="container1">
+        <!-- Video Player -->
+        <div class="video-wrapper">
+          <div id="youtube-player"></div>
+          <div id="video-placeholder">Masukkan URL YouTube</div>
+        </div>
+        <!-- Panel 1 -->
+        <div class="panel panel1">
+          <!-- Controls -->
+          <div class="controls-section">
+            <div class="playback-controls">
+              <button
+                id="toStartBtn"
+                class="btn btn-control"
+                title="Jump to start (HOME)"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  version="1.1"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="1.9738"
+                    y=".36634"
+                    width="2.5635"
+                    height="23.267"
+                    rx="0"
+                  />
+                  <polygon
+                    transform="matrix(-1.6357 0 0 1.6357 35.679 -7.6284)"
+                    points="8 19 8 5 19 12"
+                    stroke-width="0"
+                  />
+                </svg>
+              </button>
+              <button
+                id="frameBackwardBtn"
+                class="btn btn-control"
+                title="-1 Frame (SHIFT+ARROW_L)"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  version="1.1"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    transform="scale(-1,1)"
+                    x="-24"
+                    y=".36634"
+                    width="2.5635"
+                    height="23.267"
+                    rx="0"
+                  />
+                  <polygon
+                    transform="matrix(-1.4961 0 0 1.6357 28.426 -7.6284)"
+                    points="8 5 19 12 8 19"
+                    stroke-width="0"
+                  />
+                </svg>
+              </button>
+              <button
+                id="playBtn"
+                class="btn btn-control btn-play"
+                title="Play (SPACE)"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  version="1.1"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <polygon
+                    transform="matrix(1.6357 0 0 1.6357 -8.5815 -7.628)"
+                    points="19 12 8 19 8 5"
+                  />
+                </svg>
+              </button>
+              <button
+                id="pauseBtn"
+                class="btn btn-control btn-pause"
+                title="Pause (SPACE)"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  version="1.1"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="2.0283"
+                    y=".36634"
+                    width="6.6478"
+                    height="23.267"
+                    rx="0"
+                  />
+                  <rect
+                    x="15.324"
+                    y=".36634"
+                    width="6.6478"
+                    height="23.267"
+                    rx="0"
+                  />
+                </svg>
+              </button>
+              <button
+                id="frameForwardBtn"
+                class="btn btn-control"
+                title="+1 Frame (SHIFT+ARROW_R)"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  version="1.1"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect y=".36634" width="2.5635" height="23.267" rx="0" />
+                  <polygon
+                    transform="matrix(1.4961 0 0 1.6357 -4.4261 -7.6284)"
+                    points="8 19 8 5 19 12"
+                    stroke-width="0"
+                  />
+                </svg>
+              </button>
+              <button
+                id="toEndBtn"
+                class="btn btn-control"
+                title="Jump to end (END)"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  version="1.1"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    transform="scale(-1,1)"
+                    x="-22.593"
+                    y=".36634"
+                    width="2.5635"
+                    height="23.267"
+                    rx="0"
+                  />
+                  <polygon
+                    transform="matrix(1.6357 0 0 1.6357 -11.112 -7.6284)"
+                    points="8 5 19 12 8 19"
+                    stroke-width="0"
+                  />
+                </svg>
+              </button>
+            </div>
+            <button
+              id="volumeMutedBtn"
+              class="btn btn-control volume-muted-btn"
+              title="Unmute (m)"
+            >
+              <svg
+                width="24"
+                height="24"
+                version="1.1"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m0.75579 7.7231v7.9181h5.2787l6.5984 5.2787v-18.476l-6.5984 5.2787z"
+                  fill="currentColor"
+                />
+                <line
+                  x1="14.539"
+                  x2="21.879"
+                  y1="7.5962"
+                  y2="16.404"
+                  stroke="currentColor"
+                  stroke-width="2.9359"
+                />
+                <line
+                  x1="21.879"
+                  x2="14.539"
+                  y1="7.5962"
+                  y2="16.404"
+                  stroke="currentColor"
+                  stroke-width="2.9359"
+                />
+              </svg>
+            </button>
+            <button
+              id="volumeBtn"
+              class="btn btn-control volume-btn active"
+              title="Mute (m)"
+            >
+              <svg
+                width="24"
+                height="24"
+                version="1.1"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m0.75579 7.7231v7.9181h5.2787l6.5984 5.2787v-18.476l-6.5984 5.2787z"
+                  fill="currentColor"
+                />
+                <path
+                  d="m15.128 7.0632c1.9795 1.9795 1.9795 7.2583 0 9.2378"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.6394"
+                />
+                <path
+                  d="m18.427 3.764c3.9591 3.9591 3.9591 11.877 0 15.836"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.6394"
+                />
+              </svg>
+            </button>
+            <div class="volume-controls">
+              <input
+                type="range"
+                title="Volume mute/unmute (m)"
+                aria-label="volume"
+                id="volumeSlider"
+                class="slider volume-slider"
+                min="0"
+                max="100"
+                value="100"
+                step="1"
+              />
+            </div>
+          </div>
+
+          <!-- Marker Controls -->
+          <div class="marker-section">
+            <div class="marker-controls">
+              <section>
+                <input
+                  type="text"
+                  maxlength="240"
+                  id="markerLabelInput"
+                  placeholder="Marker label"
+                  class="marker-input"
+                />
+
+                <button
+                  id="addMarkerBtn"
+                  class="btn btn-primary"
+                  title="Add marker (CTRL+m)"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    version="1.1"
+                    viewBox="0 0 6.35 6.35"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="m3.3377 6.1397-2.2523-1.9071-0.032127-3.945 4.5055 0.019937-0.029872 3.9288z"
+                      stroke-width=".26458"
+                    />
+                    <path
+                      d="m3.563 2.1655h1.4205v0.50469h-1.4205v1.4643h-0.51396v-1.4643h-1.4205v-0.50469h1.4205v-1.4714h0.51396z"
+                      fill="var(--accent-primary)"
+                    />
+                  </svg>
+                </button>
+              </section>
+            </div>
+            <div id="markerList" class="marker-list scrollbar"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2 -->
+      <div class="panel panel2">
+        <div class="timeline-info">
+          <div class="time-display">
+            <span class="time-display-wrapper">
+              <span class="time-label">Time:</span>
+              <span class="time-value" id="currentTimeDisplay">00:00:00</span>
+              <span class="separator">/</span>
+              <span class="time-value" id="durationDisplay">00:00:00</span>
+            </span>
+            <span class="frame-display-wrapper">
+              <span class="time-label">Frame:</span>
+              <span class="time-value" id="frameDisplay">0</span>
+              <span class="separator">/</span>
+              <span class="time-value" id="totalFrameDisplay">0</span>
+            </span>
+
+            <span class="fps-info">
+              <label>FPS:</label>
+              <span id="fpsLabel" class="fps-label"> </span>
+            </span>
+          </div>
+          <!-- Zoom Controls -->
+          <div class="zoom-controls">
+            <div class="zoom-buttons">
+              <button
+                id="zoomOutBtn"
+                class="zoom-btn"
+                title="Zoom Out (CTRL+-)"
+              >
+                -
+              </button>
+              <input
+                type="range"
+                title="zoom"
+                aria-label="zoom"
+                id="zoomSlider"
+                class="slider zoom-slider"
+                min="0"
+                max="100"
+                value="100"
+                step="1"
+              />
+              <button id="zoomInBtn" class="zoom-btn" title="Zoom In (CTRL+=)">
+                +
+              </button>
+            </div>
+            <span class="zoom-label" id="zoomLabel"></span>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline-container scrollbar" id="timelineContainer">
+          <div id="markersContainer"></div>
+          <div id="timeline" class="timeline">
+            <div id="frameTicks"></div>
+            <div id="frameTicksFrame"></div>
+            <div id="timelineHandle" class="timeline-handle">
+              <div class="handle-line"></div>
+              <div class="handle-head"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="./assets/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+.btn {
+  padding: 2px 7px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  user-select: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background: var(--btn-primary-bg);
+}
+
+.panel-btn{
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  outline: none;
+  user-select: none;
+  background: transparent;
+  padding: .3em;
+}
+
+.panel-btn:hover:not(:disabled), .panel-btn:focus{
+  color: var(--text-accent);
+  background-color: var(--blue-700);
+}
+.panel-btn:disabled{
+  color: var(--gray-400);
+}
+
+.panel-btn svg{
+  transition: all 0.3s;
+}
+
+.panel-btn:hover:not(:disabled) svg, .panel-btn:focus svg{
+  fill: var(--accent-primary);
+  stroke: var(--accent-primary);
+}
+
+.panel-btn:hover:not(:disabled), .panel-btn:focus{
+  color: var(--text-accent);
+  background-color: var(--blue-700);
+}
+.panel-btn:disabled svg{
+  fill:  var(--gray-400);
+  stroke:  var(--gray-400);
+}
+
+
+.btn-primary:hover, .btn-primary:focus,
+.btn-export:hover,
+.btn-control:hover,
+.btn-import:hover {
+  color: var(--text-accent);
+  border-color: var(--accent-primary);
+}
+
+.btn-control {
+  width: 30px;
+  height: 30px;
+  background: var(--gray-600);
+  border: 1px solid var(--border-default);
+}
+
+.btn-play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.btn-pause {
+  justify-content: center;
+  align-items: center;
+  display: none;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.btn-play:hover svg,
+.btn-pause:hover svg {
+  fill: var(--accent-primary);
+}
+
+
+
+.volume-muted-btn, .volume-btn{
+  display: none;
+}
+.volume-muted-btn.active, .volume-btn.active{
+  display: flex;
+}
+
+.btn-remove {
+  background: var(--btn-danger-bg);
+  font-size: 0.9rem;
+}
+
+.btn-remove:hover, .btn-remove:focus {
+  background: var(--btn-danger-hover);
+  border-color: var(--accent-primary);
+}

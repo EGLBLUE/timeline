@@ -1,0 +1,37 @@
+.loading {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  display: none;
+}
+
+.loading.active {
+  display: flex;
+}
+
+.loading-spinner {
+  width: 52px;
+  height: 52px;
+  border: 5px solid rgba(255, 255, 255, 0.2);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+.loading-text {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: var(--accent-primary);
+  letter-spacing: 1px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

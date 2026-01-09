@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+ <path d="m0.75579 7.7231v7.9181h5.2787l6.5984 5.2787v-18.476l-6.5984 5.2787z" fill="currentColor"/>
+ <line x1="14.539" x2="21.879" y1="7.5962" y2="16.404" stroke="currentColor" stroke-width="2.9359"/>
+ <line x1="21.879" x2="14.539" y1="7.5962" y2="16.404" stroke="currentColor" stroke-width="2.9359"/>
+</svg>
