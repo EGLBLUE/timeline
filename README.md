@@ -110,64 +110,7 @@ Markers represent **structured editing data**, not just visual points.
 
 # Keyboard Shortcuts
 
-This application provides a set of keyboard shortcuts designed to improve workflow efficiency when working with video playback and timeline editing.
-
----
-
-## Playback Controls
-
-| Shortcut | Action              |
-| -------- | ------------------- |
-| `Space`  | Play / Pause        |
-| `M`      | Mute / Unmute audio |
-
----
-
-## Marker Management
-
-| Shortcut           | Action                           |
-| ------------------ | -------------------------------- |
-| `Ctrl + M`         | Add a marker at the current time |
-| `Ctrl + Shift + C` | Remove all markers               |
-
----
-
-## Timeline Navigation
-
-| Shortcut    | Action                                |
-| ----------- | ------------------------------------- |
-| `Shift + →` | Move forward one frame                |
-| `Shift + ←` | Move backward one frame               |
-| `Home`      | Jump to the beginning of the timeline |
-| `End`       | Jump to the end of the timeline       |
-
----
-
-## Zoom Controls
-
-| Shortcut   | Action   |
-| ---------- | -------- |
-| `Ctrl + =` | Zoom in  |
-| `Ctrl + -` | Zoom out |
-
----
-
-## File Operations
-
-| Shortcut   | Action          |
-| ---------- | --------------- |
-| `Ctrl + S` | Export timeline |
-| `Ctrl + I` | Import timeline |
-
----
-
-## History
-
-| Shortcut           | Action             |
-| ------------------ | ------------------ |
-| `Ctrl + Z`         | Undo               |
-| `Ctrl + Y`         | Redo               |
-| `Ctrl + Shift + Z` | Redo (alternative) |
+This application provides a set of Keyboard Shortcuts designed to improve workflow efficiency when working with video playback and timeline editing.
 
 ---
 
