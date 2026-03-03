@@ -45,6 +45,7 @@ const render = () => {
     const h2 = document.createElement("h2");
     h2.textContent = section.title;
     h2.className = "sub-title"
+    h2.id = id
     content.appendChild(h2);
 
     if (section.content) {
