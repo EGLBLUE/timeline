@@ -51,6 +51,7 @@ export const importBtn = document.getElementById("importBtn");
 export const zoomOutBtn = document.getElementById("zoomOutBtn");
 export const zoomInBtn = document.getElementById("zoomInBtn");
 
+export const helpButton = document.getElementById("helpBtn")
 export const Loading = {
   el: document.getElementById("loading-overlay"),
 

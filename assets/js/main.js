@@ -54,6 +54,7 @@ import {
   volumeBtn,
   volumeMutedBtn,
   markerLabelInput,
+  helpButton,
 } from "./ui.js";
 import {
   setupZoomControls,
@@ -515,6 +516,7 @@ const initOnClick = () => {
   pauseBtn.onclick = () => togglePlayPause();
   undoBtn.onclick = () => undo();
   redoBtn.onclick = () => redo();
+  helpButton.onclick = () => window.open("/help", "_blank");
 };
 
 document.documentElement.dataset.theme = "dark";
