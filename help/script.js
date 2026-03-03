@@ -32,6 +32,13 @@ const loadLanguage = async (lang) => {
   labels = await labelRes.json();
 
   render();
+
+  if (location.hash) {
+    const el = document.querySelector(location.hash);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  }
 };
 
 const render = () => {
