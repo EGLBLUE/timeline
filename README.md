@@ -108,7 +108,7 @@ Markers represent **structured editing data**, not just visual points.
 
 # Keyboard Shortcuts
 
-This application provides a set of Keyboard Shortcuts designed to improve workflow efficiency when working with video playback and timeline editing. [See](./help#shortcuts)
+This application provides a set of Keyboard Shortcuts designed to improve workflow efficiency when working with video playback and timeline editing. [See](https://eglblue.github.io/timeline/help/#shortcuts)
 
 ---
 
