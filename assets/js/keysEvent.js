@@ -11,6 +11,51 @@ import {
 import { timelineData } from "./states.js";
 import { muteVolume } from "./volume.js";
 import { zoomIn, zoomOut } from "./zoomControls.js";
+import shortcuts from "../../core/shortcuts.js";
+import { matchShortcut } from "../../core/shortcutEngine.js";
+
+const actions = {
+  mute_unmute:{
+    run: () => muteVolume(!timelineData.isMuted),
+  },
+  export:{
+    run: () => exportTimeline(),
+  },
+  import:{
+    run: () => importTimeline(),
+    higher: true,
+  },
+  add_marker:{
+    run: () => addMarker(timelineData.currentTime),
+  },
+  clear_markers:{
+    run: () => executeCommand(clearMarkersCommand()),
+  },
+  undo: {
+    run: () => undo(),
+  },
+  redo: {
+    run: () => redo(),
+  },
+  zoom_in: {
+    run: () => zoomIn(),
+  },
+  zoom_out: {
+    run: () => zoomOut(),
+  },
+  frame_backward:{
+    run: () => frameBackward(),
+  },
+  frame_forward:{
+    run: () => frameForward(),
+  },
+  to_start:{
+    run: () => toStartTime(),
+  },
+  to_end:{
+    run: () => toEndTime(),
+  }
+};
 
 const checkIgnoreElements = () => {
   const el = document.activeElement;
@@ -24,53 +69,35 @@ const checkIgnoreElements = () => {
   return false;
 };
 
-const keyboardHandler = (e) => {
+const higherShortcuts = (e) => {  
   if (checkIgnoreElements()) return;
-
-  if (e.key.toLowerCase() === "m" && !e.ctrlKey && !e.shiftKey)
-    muteVolume(!timelineData.isMuted);
-  else if (e.ctrlKey && e.key.toLowerCase() === "s" && !e.shiftKey) {
-    e.preventDefault();
-    exportTimeline(false);
-  } else if (e.ctrlKey && e.key.toLowerCase() === "i" && !e.shiftKey) {
-    e.preventDefault();
-    importTimeline();
-  } else if (e.ctrlKey && e.key.toLowerCase() === "m" && !e.shiftKey) {
-    e.preventDefault();
-    addMarker(timelineData.currentTime);
-  } else if (e.ctrlKey && e.key.toLowerCase() === "c" && e.shiftKey) {
-    e.preventDefault();
-    executeCommand(clearMarkersCommand());
-  } else if (e.key.toLowerCase() === "home") {
-    e.preventDefault();
-    toStartTime();
-  } else if (e.key.toLowerCase() === "end") {
-    e.preventDefault();
-    toEndTime();
-  } else if (!e.ctrlKey && e.key.toLowerCase() === "arrowright" && e.shiftKey) {
-    e.preventDefault();
-    frameForward();
-  } else if (!e.ctrlKey && e.key.toLowerCase() === "arrowleft" && e.shiftKey) {
-    e.preventDefault();
-    frameBackward();
-  } else if (e.ctrlKey && e.key.toLowerCase() === "=" && !e.shiftKey) {
-    e.preventDefault();
-    zoomIn();
-  } else if (e.ctrlKey && e.key.toLowerCase() === "-" && !e.shiftKey) {
-    e.preventDefault();
-    zoomOut();
-  } else if (e.ctrlKey && e.key.toLowerCase() === "z" && !e.shiftKey) {
-    e.preventDefault();
-    undo();
-  } else if (
-    e.ctrlKey &&
-    ((e.key.toLowerCase() === "y" && !e.shiftKey) ||
-      (e.key.toLowerCase() === "z" && e.shiftKey))
-  ) {
-    e.preventDefault();
-    redo();
+  for (const id in shortcuts) {
+    if (matchShortcut(e, shortcuts[id])) {
+      const action = actions[id];
+      if (!action) break;
+      if (!action.higher) break;
+      e.preventDefault();
+      action.run();
+      break;
+    }
   }
 };
+const keyboardHandler = (e) => {  
+  if (checkIgnoreElements()) return;
+  for (const id in shortcuts) {
+    if (matchShortcut(e, shortcuts[id])) {
+      const action = actions[id];
+      if (!action) break;
+      if (action.higher) break;
+      e.preventDefault();
+      action.run();
+      break;
+    }
+  }
+};
+
+export const setupHigherShortcuts = () => document.addEventListener("keydown", higherShortcuts);
+export const destroyHigherShortcuts = () => document.removeEventListener("keydown", higherShortcuts);
 
 export const setupKeyShortcuts = () => {
   document.addEventListener("keydown", keyboardHandler);

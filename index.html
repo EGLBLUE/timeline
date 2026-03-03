@@ -43,8 +43,8 @@
       </div>
       <div class="panel-menu">
         <ul class="panel-menu-list tools">
-          <li title="Undo change (CTRL+z)">
-            <button id="undoBtn" class="panel-btn undo-btn">
+          <li>
+            <button id="undoBtn" class="panel-btn undo-btn" data-shortcut="undo">
               <svg
                 width="15"
                 height="15"
@@ -61,8 +61,8 @@
               </svg>
             </button>
           </li>
-          <li title="Redo change (CTRL+SHIFT+z)">
-            <button id="redoBtn" class="panel-btn redo-btn">
+          <li>
+            <button id="redoBtn" class="panel-btn redo-btn" data-shortcut="redo">
               <svg
                 width="15"
                 height="15"
@@ -84,7 +84,7 @@
               id="clearMarkersBtn"
               class="panel-btn clear-markers-btn"
               aria-label="remove all marker"
-              title="Remove All Marker (CTRL+SHIFT+c)"
+              data-shortcut="clear_markers"
             >
               Clear Markers
             </button>
@@ -109,7 +109,7 @@
             <button
               id="importBtn"
               class="panel-btn import-timeline-btn"
-              title="Import Timeline Data (CTRL+i)"
+              data-shortcut="import"
             >
               <svg
                 width="15"
@@ -134,7 +134,7 @@
             <button
               id="exportBtn"
               class="panel-btn export-timeline-btn"
-              title="Export Timeline Data (CTRL+s)"
+              data-shortcut="export"
             >
               <svg
                 width="15"
@@ -201,7 +201,7 @@
               <button
                 id="toStartBtn"
                 class="btn btn-control"
-                title="Jump to start (HOME)"
+                data-shortcut="to_start"
               >
                 <svg
                   width="24"
@@ -228,7 +228,7 @@
               <button
                 id="frameBackwardBtn"
                 class="btn btn-control"
-                title="-1 Frame (SHIFT+ARROW_L)"
+                data-shortcut="frame_backward"
               >
                 <svg
                   width="24"
@@ -256,7 +256,7 @@
               <button
                 id="playBtn"
                 class="btn btn-control btn-play"
-                title="Play (SPACE)"
+                data-shortcut="play_pause"
               >
                 <svg
                   width="24"
@@ -275,7 +275,7 @@
               <button
                 id="pauseBtn"
                 class="btn btn-control btn-pause"
-                title="Pause (SPACE)"
+                data-shortcut="play_pause"
               >
                 <svg
                   width="24"
@@ -304,7 +304,7 @@
               <button
                 id="frameForwardBtn"
                 class="btn btn-control"
-                title="+1 Frame (SHIFT+ARROW_R)"
+                data-shortcut="frame_forward"
               >
                 <svg
                   width="24"
@@ -325,7 +325,7 @@
               <button
                 id="toEndBtn"
                 class="btn btn-control"
-                title="Jump to end (END)"
+                data-shortcut="to_end"
               >
                 <svg
                   width="24"
@@ -354,7 +354,7 @@
             <button
               id="volumeMutedBtn"
               class="btn btn-control volume-muted-btn"
-              title="Unmute (m)"
+              data-shortcut="mute"
             >
               <svg
                 width="24"
@@ -388,7 +388,7 @@
             <button
               id="volumeBtn"
               class="btn btn-control volume-btn active"
-              title="Mute (m)"
+              data-shortcut="mute_unmute"
             >
               <svg
                 width="24"
@@ -445,7 +445,7 @@
                 <button
                   id="addMarkerBtn"
                   class="btn btn-primary"
-                  title="Add marker (CTRL+m)"
+                  data-shortcut="add_marker"
                 >
                   <svg
                     width="24"

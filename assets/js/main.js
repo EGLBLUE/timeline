@@ -85,8 +85,10 @@ import {
   destroyKeyShortcuts,
   playPauseVideoKey,
   removePlayPauseVideoKey,
+  setupHigherShortcuts,
   setupKeyShortcuts,
 } from "./keysEvent.js";
+import { applyShortcutTooltips } from "../../core/shortcutEngine.js";
 
 const YOUTUBE_ERRORS = {
   FETCH_FAILED: "Failed to fetch data from YouTube server",
@@ -348,8 +350,7 @@ const loadNewVideo = async (vidUrl, force = false) => {
   setupPlayer();
 };
 
-export const exportTimeline = (force = true) => {
-  if (!force && !isDirty) return;
+export const exportTimeline = () => {
   const { videoId, videoUrl } = getVideoUrl(vidPlayer);
 
   const totalFrames = Math.floor(timelineData.duration * timelineData.fps);
@@ -516,7 +517,7 @@ const initOnClick = () => {
   pauseBtn.onclick = () => togglePlayPause();
   undoBtn.onclick = () => undo();
   redoBtn.onclick = () => redo();
-  helpButton.onclick = () => window.open("/help", "_blank");
+  helpButton.onclick = () => window.open("./help", "_blank");
 };
 
 document.documentElement.dataset.theme = "dark";
@@ -534,6 +535,8 @@ window.onload = () => {
   initOnClick();
   initMarkersEvent();
   disableWhenLoading();
+  setupHigherShortcuts()
+  applyShortcutTooltips()
 };
 
 window.onresize = () => {
