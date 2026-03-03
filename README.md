@@ -74,9 +74,7 @@ A marker pair (segment) can be in one of the following states:
 
 | State    | Description                         |
 | -------- | ----------------------------------- |
-| Active   | Currently selected or being edited  |
-| Inactive | Exists but not selected             |
-| Disabled | Temporarily ignored during playback |
+| Moved    | The marker has been repositioned    |
 | Deleted  | Removed via undoable command        |
 
 All marker state changes are tracked by the command system.
