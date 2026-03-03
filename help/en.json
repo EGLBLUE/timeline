@@ -1,0 +1,64 @@
+{
+  "title": "Timeline - Eagle Blue Help",
+
+  "sections": {
+    "getting_started": {
+      "title": "Getting Started",
+      "content": [
+        "This editor allows you to place markers on a timeline.",
+        "Press {{play_pause}} to start or stop playback."
+      ]
+    },
+    "timeline": {
+      "title": "Timeline",
+      "content": [
+        "The timeline represents the duration of the media.",
+        "Drag playhead to adjust their time."
+      ]
+    },
+    "markers": {
+      "title": "Markers",
+      "content": [
+        "Press {{add_marker}} to add a marker."
+      ]
+    },
+    "playback": {
+      "title": "Playback",
+      "content": [
+        "Use {{play_pause}} to control playback."
+      ]
+    },
+    "shortcuts": {
+      "title": "Keyboard Shortcuts",
+      "shortcutIds": [
+        "play_pause",
+        "add_marker",
+        "clear_markers",
+        "undo",
+        "redo",
+        "mute_unmute",
+        "export",
+        "import",
+        "frame_backward",
+        "frame_forward",
+        "to_start",
+        "to_end"
+      ]
+    }
+  },
+
+  "actions": {
+    "play_pause": "Play / Pause",
+    "add_marker": "Add Marker",
+    "clear_markers": "Clear Markers",
+    "undo": "Undo",
+    "redo": "Redo",
+    "mute_unmute": "Mute Unmute",
+    "export": "Export",
+    "import": "Import",
+    "frame_backward": "Frame Backward",
+    "frame_forward": "Frame Forward",
+    "to_start": "To Start",
+    "to_end":"To end"
+  }
+}

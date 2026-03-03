@@ -1,0 +1,9 @@
+{
+  "sections": [
+    { "id": "getting_started" },
+    { "id": "timeline" },
+    { "id": "markers" },
+    { "id": "playback" },
+    { "id": "shortcuts" }
+  ]
+}
